@@ -15,7 +15,6 @@ import java.util.Locale;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-import android.os.Environment;
 import android.util.Log;
 
 public class RepeatItemManager {
@@ -99,9 +98,9 @@ public class RepeatItemManager {
     }
 
     private void initFiles() {
-        String dirNames[] = {Configure.HOME_PATH, Configure.TEXT_PATH, Configure.AUDIO_PATH};
-        for (String dirName : dirNames) {
-            File dir = new File(Environment.getExternalStorageDirectory() + dirName);
+        String paths[] = {Configure.HOME_PATH, Configure.TEXT_PATH, Configure.AUDIO_PATH};
+        for (String path : paths) {
+            File dir = new File(path);
             if (! dir.exists()) {
                 boolean result = dir.mkdir();
                 String message = "Creating dir '" + dir + "' ";
