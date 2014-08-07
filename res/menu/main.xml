@@ -3,6 +3,11 @@
     tools:context="org.leopub.repeater.MainActivity" >
 
     <item
+        android:id="@+id/action_fetch"
+        android:icon="@drawable/ic_action_fetch"
+        android:title="@string/action_fetch"
+        android:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never"

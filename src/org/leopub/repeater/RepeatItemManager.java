@@ -41,6 +41,10 @@ public class RepeatItemManager {
         return mItems;
     }
     
+    public void update () {
+        mItems = generateItems();
+    }
+    
     public List<RepeatItem> generateItems() {
         List<RepeatItem> result = new ArrayList<RepeatItem>();
         Queue<String> txtFilenames = new PriorityQueue<String>(getFilenameList(Configure.TEXT_PATH, ".txt"));

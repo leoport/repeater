@@ -4,6 +4,7 @@
     <string name="app_name">Repeater</string>
     <string name="list_empty">No Record!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_fetch">Fetch from downloads</string>
     <string name="item_index">Index</string>
     <string name="item_title">Title</string>
     <string name="title_activity_text">Text</string>
