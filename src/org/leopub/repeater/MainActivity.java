@@ -104,6 +104,10 @@ public class MainActivity extends ListActivity {
         getListView().setSelectionFromTop(mSelectionPos, mSelectionY);
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 
     private class RepeatItemAdapter extends ArrayAdapter<RepeatItem> {
         public RepeatItemAdapter(Context context, int resource, int textViewId, List<RepeatItem> items) {
