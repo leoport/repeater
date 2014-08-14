@@ -132,7 +132,7 @@ public class MainActivity extends ListActivity {
         File downloadDir = Environment.getExternalStoragePublicDirectory(DOWNLOAD_SERVICE);
         File[] files = downloadDir.listFiles(new FilenameFilter() {
             @Override
-            public boolean accept(File file, String filename) {
+            public boolean accept(File dir, String filename) {
                 return filename.endsWith(".mp3");
             }
         });

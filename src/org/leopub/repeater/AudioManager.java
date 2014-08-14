@@ -1,10 +1,12 @@
 package org.leopub.repeater;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.media.MediaPlayer;
 import android.util.Log;
 
-public class AudioManager {
+public class AudioManager implements OnAudioFocusChangeListener {
     public enum Status {
         Unready,
         Playing,
@@ -28,8 +30,10 @@ public class AudioManager {
         return sAudioManager;
     }
 
-    public void start(String path) {
+    public void start(String path, Context context) {
         try {
+            android.media.AudioManager audioManager = (android.media.AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+            audioManager.requestAudioFocus(this, android.media.AudioManager.STREAM_MUSIC, android.media.AudioManager.AUDIOFOCUS_GAIN);
             mPlayer.setDataSource(path);
             mPlayer.prepare();
             mPlayer.start();
@@ -44,7 +48,9 @@ public class AudioManager {
         mStatus = Status.Paused;
     }
 
-    public void resume() {
+    public void resume(Context context) {
+        android.media.AudioManager audioManager = (android.media.AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+        audioManager.requestAudioFocus(this, android.media.AudioManager.STREAM_MUSIC, android.media.AudioManager.AUDIOFOCUS_GAIN);
         mPlayer.start();
         mStatus = Status.Playing;
     }
@@ -80,5 +86,12 @@ public class AudioManager {
         int min = sec / 60;
         sec = sec % 60;
         return String.format("%d:%02d", min, sec);
+    }
+
+    @Override
+    public void onAudioFocusChange(int focusChange) {
+        if (focusChange == android.media.AudioManager.AUDIOFOCUS_LOSS) {
+            pause();
+        }
     }
 }

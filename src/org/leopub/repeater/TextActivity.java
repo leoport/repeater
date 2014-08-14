@@ -114,7 +114,7 @@ public class TextActivity extends Activity {
     public void onAudioPlay(View view) { 
         switch(mAudioManager.getStatus()) {
         case Unready:
-            mAudioManager.start(mItem.getAudioPath());
+            mAudioManager.start(mItem.getAudioPath(), this);
             setDisplayAudioPosTimer();
             break;
         case Playing:
@@ -123,7 +123,7 @@ public class TextActivity extends Activity {
             mTimer = null;
             break;
         case Paused:
-            mAudioManager.resume();
+            mAudioManager.resume(this);
             setDisplayAudioPosTimer();
             break;
         }

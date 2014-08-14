@@ -123,8 +123,8 @@ public class RepeatItemManager {
         File dir = new File(path);
         String[] names = dir.list(new FilenameFilter() {
             @Override
-            public boolean accept(File file, String s) {
-                return ! file.getName().endsWith(suffix);
+            public boolean accept(File parentDir, String filename) {
+                return filename.endsWith(suffix);
             }
         });
         result = Arrays.asList(names);
